@@ -1,5 +1,5 @@
 %% start
-tic % the script takes 3 minutes to run on my Apple M1 pro 8 cores
+tic % the script takes 8 minutes to run on my Apple M1 pro 8 cores
 % MATLAB commands
 clc, clear, close all, dbstop if error
 

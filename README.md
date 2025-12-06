@@ -20,27 +20,15 @@ The project involves a grid search for asteroid sample return opportunities for 
 
 ## 🏆 Results
 
-The analysis identified **Asteroid 2014 WX202** as the prime candidate for the sample return mission. The recommended trajectory minimizes the total post-launch velocity change ($\Delta v_{234}$) while satisfying the mandatory 60-day scientific stay.
+The analysis identified **Asteroid 2014 WX202** as the prime candidate for the sample return mission. The optimal mission profile requires a **Total $\Delta v$ of 5.477 km/s** and spans a total duration of **560 days** (approx. 1.5 years).
 
-### 📊 Performance Metrics
-The selected solution yields the following costs and constraints:
-
-*   **Total Post-Launch Cost ($\Delta v_{234}$):** `4.086 km/s`
-    *   *Combined cost of asteroid rendezvous, departure, and Earth re-entry setup.*
-*   **Asteroid Departure Burn ($\Delta v_3$):** `0.541 km/s`
-*   **Total Time of Flight:** `560 days`
-*   **Layover Duration:** `60 days`
-
-### 📅 Mission Timeline
-The optimal mission profile spans a total of **560 days** (approx. 1.5 years).
-
-| Mission Event | Date (MJD2000) | Date (Gregorian) | Duration / $\Delta v$ |
-| :--- | :--- | :--- | :--- |
-| **Earth Departure** | 12363.5 | **05 Nov 2033** | *Launch* |
-| **Asteroid Arrival** | 12673.5 | **11 Sep 2034** | Transfer: 310 days |
-| **Scientific Operations** | — | — | **60 days** |
-| **Asteroid Departure** | 12733.5 | **10 Nov 2034** | $\Delta v_3 = 0.541$ km/s |
-| **Earth Return** | 12923.5 | **19 May 2035** | Transfer: 190 days |
+| Mission Event | Date (MJD2000) | Date (Gregorian) | Time (days) | $\Delta v$ (km/s) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Earth Departure** | 12363.5 | 05 Nov 2033 | 0 | 1.391 |
+| **Asteroid Arrival** | 12673.5 | 11 Sep 2034 | 310 | 0.299 |
+| **Scientific Operations** | — | — | 60 | 0.000 |
+| **Asteroid Departure** | 12733.5 | 10 Nov 2034 | — | 0.541 |
+| **Earth Return** | 12923.5 | 19 May 2035 | 190 | 3.247 |
 
 ### Porkchop Plots
 Below are the porkchop plots generated for the four distinct burns of the mission.
@@ -151,3 +139,8 @@ Normalizing by $1/v_c$ gives the final FoM used in the code:
 $$
 \boxed{FoM = \sqrt{e^2 + [2 \cdot \sin(i/2)]^2}}
 $$
+
+
+
+date1_MJD	date2_MJD	date3_MJD	date4_MJD	dv1	dv2	dv3	dv4	dvLeg1	dvLeg2	dv234	dvTot	ToF	layover	astID
+12363.5	12673.5	12733.5	12923.5	1.39097737946196	0.299170436874583	0.540685054269298	3.24657014849448	1.69014781633655	3.78725520276378	4.08642563963836	5.47740301910033	560	60	9076

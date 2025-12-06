@@ -34,19 +34,20 @@ The analysis identified **Asteroid 2014 WX202** as the prime candidate for the s
 Below are the porkchop plots generated for the four distinct burns of the mission.
 
 <div align="center">
-  <img src="plot/dv1.png" width="45%" alt="Porkchop Plot - Leg 1: Earth to Asteroid" />
-  <img src="plot/dv2.png" width="45%" alt="Porkchop Plot - Leg 2: Asteroid Rendezvous" />
+  <img src="plot/dv1.png" width="100%" alt="Porkchop Plot - Leg 1: Earth to Asteroid" />
+  <p><em>Leg 1: Earth Departure and Asteroid Arrival</em></p>
 </div>
 <div align="center">
-  <p><em>Top: Earth → Asteroid (Left) and Asteroid Rendezvous (Right)</em></p>
-</div>
-
-<div align="center">
-  <img src="plot/dv3.png" width="45%" alt="Porkchop Plot - Leg 3: Asteroid Departure" />
-  <img src="plot/dv4.png" width="45%" alt="Porkchop Plot - Leg 4: Asteroid to Earth" />
+  <img src="plot/dv2.png" width="100%" alt="Porkchop Plot - Leg 2: Asteroid Rendezvous" />
+  <p><em>Leg 2: Asteroid Rendezvous Maneuver</em></p>
 </div>
 <div align="center">
-  <p><em>Bottom: Asteroid Departure (Left) and Earth Return (Right)</em></p>
+  <img src="plot/dv3.png" width="100%" alt="Porkchop Plot - Leg 3: Asteroid Departure" />
+  <p><em>Leg 3: Asteroid Departure Maneuver</em></p>
+</div>
+<div align="center">
+  <img src="plot/dv4.png" width="100%" alt="Porkchop Plot - Leg 4: Asteroid to Earth" />
+  <p><em>Leg 4: Earth Return and Arrival</em></p>
 </div>
 
 ---
@@ -139,8 +140,3 @@ Normalizing by $1/v_c$ gives the final FoM used in the code:
 $$
 \boxed{FoM = \sqrt{e^2 + [2 \cdot \sin(i/2)]^2}}
 $$
-
-
-
-date1_MJD	date2_MJD	date3_MJD	date4_MJD	dv1	dv2	dv3	dv4	dvLeg1	dvLeg2	dv234	dvTot	ToF	layover	astID
-12363.5	12673.5	12733.5	12923.5	1.39097737946196	0.299170436874583	0.540685054269298	3.24657014849448	1.69014781633655	3.78725520276378	4.08642563963836	5.47740301910033	560	60	9076

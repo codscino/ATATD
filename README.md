@@ -35,19 +35,19 @@ Below are the porkchop plots generated for the four distinct burns of the missio
 
 <div align="center">
   <img src="plot/dv1.png" width="100%" alt="Porkchop Plot - Leg 1: Earth to Asteroid" />
-  <p><em>Leg 1: Earth Departure and Asteroid Arrival</em></p>
+  <p><em>Leg 1.1: Earth Departure and Asteroid Arrival</em></p>
 </div>
 <div align="center">
   <img src="plot/dv2.png" width="100%" alt="Porkchop Plot - Leg 2: Asteroid Rendezvous" />
-  <p><em>Leg 2: Asteroid Rendezvous Maneuver</em></p>
+  <p><em>Leg 1.2: Asteroid Rendezvous Maneuver</em></p>
 </div>
 <div align="center">
   <img src="plot/dv3.png" width="100%" alt="Porkchop Plot - Leg 3: Asteroid Departure" />
-  <p><em>Leg 3: Asteroid Departure Maneuver</em></p>
+  <p><em>Leg 2.1: Asteroid Departure Maneuver</em></p>
 </div>
 <div align="center">
   <img src="plot/dv4.png" width="100%" alt="Porkchop Plot - Leg 4: Asteroid to Earth" />
-  <p><em>Leg 4: Earth Return and Arrival</em></p>
+  <p><em>Leg 2.2: Earth Return and Arrival</em></p>
 </div>
 
 ---

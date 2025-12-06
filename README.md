@@ -23,9 +23,7 @@ Due to the dataset size (~20,000 asteroids), a brute-force Lambert search was in
 ### Process Overview
 The selection strategy involved an initial pruning using the Shoemaker-Helin approximation, followed by a custom Figure of Merit (FoM) filter, and finally a rigorous Lambert arc scan.
 
-![Methodology Block Diagram](assets/methodology_diagram.png)
-*> Place your block diagram screenshot here (e.g., the flow chart from your PDF)*
-
+![Methodology Block Diagram](plot/block_diagram.jpeg)
 ---
 
 ### 🧮 Mathematical Proof: The Pruning Figure of Merit
@@ -39,21 +37,25 @@ $$
 $$
 
 Using the *vis-viva* equation where $r = a$, the circular velocity is:
+
 $$
 v_c = \sqrt{\frac{\mu}{a}}
 $$
 
 The periapsis velocity at $r_p = a(1-e)$ is:
+
 $$
 v_p = \sqrt{\frac{\mu}{a}} \cdot \sqrt{\frac{1+e}{1-e}}
 $$
 
 Using a 1st order Taylor approximation for $e < 0.2$:
+
 $$
 \sqrt{\frac{1+e}{1-e}} \approx 1+e
 $$
 
 Substituting this back yields:
+
 $$
 \Delta v_1 \approx \left| \sqrt{\frac{\mu}{a}} \cdot (1+e) - \sqrt{\frac{\mu}{a}} \right| = v_c \cdot e
 $$
@@ -96,12 +98,12 @@ The analysis identified **Asteroid 2014 WX202** as the prime candidate. The reco
 Below are the porkchop plots generated for the four distinct burns of the mission.
 
 <div align="center">
-  <img src="assets/porkchop_dv1.png" width="45%" alt="Porkchop Plot dv1" />
-  <img src="assets/porkchop_dv2.png" width="45%" alt="Porkchop Plot dv2" />
+  <img src="plot/dv1.png" width="45%" alt="Porkchop Plot dv1" />
+  <img src="plot/dv2.png" width="45%" alt="Porkchop Plot dv2" />
 </div>
 <div align="center">
-  <img src="assets/porkchop_dv3.png" width="45%" alt="Porkchop Plot dv3" />
-  <img src="assets/porkchop_dv4.png" width="45%" alt="Porkchop Plot dv4" />
+  <img src="plot/dv3.png" width="45%" alt="Porkchop Plot dv3" />
+  <img src="plot/dv4.png" width="45%" alt="Porkchop Plot dv4" />
 </div>
 
 *> Replace the above paths with the actual screenshots of your plots.*
@@ -109,11 +111,20 @@ Below are the porkchop plots generated for the four distinct burns of the missio
 ## 📂 Repository Structure
 
 ```text
-├── Code/
-│   ├── main_script.m       # Main execution file
-│   ├── lambert_solver.m    # Implementation of Izzo's algorithm
-│   └── tools/              # Helper functions
-├── Reports/
-│   ├── Claudio_Ferrara_report.pdf  # Final Executive Report
-│   └── fom.md              # Original Math Proof Markdown
-└── assets/                 # Images for README
+.
+├── main.m                  # Main script for pruning and delta-v calculations
+├── Leg1ConditionsPar.m     # Parallel computation for Leg 1 (Earth -> Asteroid)
+├── Leg2ConditionsPar.m     # Parallel computation for Leg 2 (Asteroid -> Earth)
+├── ShoemakerHelin.m        # Initial asteroid pruning based on delta-v approximation
+├── results.mat             # Saved final calculation results
+│
+├── lambert/                # Directory for Lambert's problem solvers
+│
+├── plot/                   # Folder with final plots and plotting functions
+│
+├── class_excercises/       # Foundational exercises from class
+│
+├── ex1/                    # Solution for a previous assignment (Earth-Mars transfer)
+│
+└── README.md                 # This file
+```

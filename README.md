@@ -16,6 +16,53 @@ The project involves a grid search for asteroid sample return opportunities for 
     *   Departure/Arrival $v_{\infty} < 1.5$ km/s.
     *   Rendezvous maneuvers $\Delta v < 500$ m/s.
 
+---
+
+## 🏆 Results
+
+The analysis identified **Asteroid 2014 WX202** as the prime candidate for the sample return mission. The recommended trajectory minimizes the total post-launch velocity change ($\Delta v_{234}$) while satisfying the mandatory 60-day scientific stay.
+
+### 📊 Performance Metrics
+The selected solution yields the following costs and constraints:
+
+*   **Total Post-Launch Cost ($\Delta v_{234}$):** `4.086 km/s`
+    *   *Combined cost of asteroid rendezvous, departure, and Earth re-entry setup.*
+*   **Asteroid Departure Burn ($\Delta v_3$):** `0.541 km/s`
+*   **Total Time of Flight:** `560 days`
+*   **Layover Duration:** `60 days`
+
+### 📅 Mission Timeline
+The optimal mission profile spans a total of **560 days** (approx. 1.5 years).
+
+| Mission Event | Date (MJD2000) | Date (Gregorian) | Duration / $\Delta v$ |
+| :--- | :--- | :--- | :--- |
+| **Earth Departure** | 12363.5 | **05 Nov 2033** | *Launch* |
+| **Asteroid Arrival** | 12673.5 | **11 Sep 2034** | Transfer: 310 days |
+| **Scientific Operations** | — | — | **60 days** |
+| **Asteroid Departure** | 12733.5 | **10 Nov 2034** | $\Delta v_3 = 0.541$ km/s |
+| **Earth Return** | 12923.5 | **19 May 2035** | Transfer: 190 days |
+
+### Porkchop Plots
+Below are the porkchop plots generated for the four distinct burns of the mission.
+
+<div align="center">
+  <img src="plot/dv1.png" width="45%" alt="Porkchop Plot - Leg 1: Earth to Asteroid" />
+  <img src="plot/dv2.png" width="45%" alt="Porkchop Plot - Leg 2: Asteroid Rendezvous" />
+</div>
+<div align="center">
+  <p><em>Top: Earth → Asteroid (Left) and Asteroid Rendezvous (Right)</em></p>
+</div>
+
+<div align="center">
+  <img src="plot/dv3.png" width="45%" alt="Porkchop Plot - Leg 3: Asteroid Departure" />
+  <img src="plot/dv4.png" width="45%" alt="Porkchop Plot - Leg 4: Asteroid to Earth" />
+</div>
+<div align="center">
+  <p><em>Bottom: Asteroid Departure (Left) and Earth Return (Right)</em></p>
+</div>
+
+---
+
 ## ⚙️ Methodology
 
 Due to the dataset size (~20,000 asteroids), a brute-force Lambert search was infeasible. A multi-step pruning process was implemented to filter candidates down to a manageable number before performing high-fidelity analysis.
@@ -24,9 +71,34 @@ Due to the dataset size (~20,000 asteroids), a brute-force Lambert search was in
 The selection strategy involved an initial pruning using the Shoemaker-Helin approximation, followed by a custom Figure of Merit (FoM) filter, and finally a rigorous Lambert arc scan.
 
 ![Methodology Block Diagram](plot/block_diagram.jpeg)
+
 ---
 
-### 🧮 Mathematical Proof: The Pruning Figure of Merit
+## 📂 Repository Structure
+
+```text
+.
+├── main.m                  # Main script for pruning and delta-v calculations
+├── Leg1ConditionsPar.m     # Parallel computation for Leg 1 (Earth -> Asteroid)
+├── Leg2ConditionsPar.m     # Parallel computation for Leg 2 (Asteroid -> Earth)
+├── ShoemakerHelin.m        # Initial asteroid pruning based on delta-v approximation
+├── results.mat             # Saved final calculation results
+│
+├── lambert/                # Directory for Lambert's problem solvers
+│
+├── plot/                   # Folder with final plots and plotting functions
+│
+├── class_excercises/       # Foundational exercises from class
+│
+├── ex1/                    # Solution for a previous assignment (Earth-Mars transfer)
+│
+└── README.md               # This file
+```
+
+---
+
+## 🧮 Appendix: Mathematical Proof
+### The Pruning Figure of Merit
 To efficiently select the top 100 candidates, a custom **Figure of Merit (FoM)** was derived. This metric approximates the $\Delta v$ required to match the asteroid's orbit based on its eccentricity ($e$) and inclination ($i$), assuming low inclination/eccentricity and a circular Earth orbit.
 
 #### I. Change Eccentricity ($\Delta v_1$)
@@ -79,52 +151,3 @@ Normalizing by $1/v_c$ gives the final FoM used in the code:
 $$
 \boxed{FoM = \sqrt{e^2 + [2 \cdot \sin(i/2)]^2}}
 $$
-
----
-
-## 🏆 Results
-
-The analysis identified **Asteroid 2014 WX202** as the prime candidate. The recommended mission profile is as follows:
-
-| Description | Date (MJD) | Date (Gregorian) | $\Delta v$ (km/s) |
-| :--- | :--- | :--- | :--- |
-| **Launch** | 12363.5 | Nov 2033 | - |
-| **Arrival** | 12673.5 | Sep 2034 | 0.54 |
-| **Departure** | 12733.5 | Nov 2034 | 0.54 |
-| **Return** | 12923.5 | May 2035 | - |
-| **Total ToF** | - | - | 560 Days |
-
-### Porkchop Plots
-Below are the porkchop plots generated for the four distinct burns of the mission.
-
-<div align="center">
-  <img src="plot/dv1.png" width="45%" alt="Porkchop Plot dv1" />
-  <img src="plot/dv2.png" width="45%" alt="Porkchop Plot dv2" />
-</div>
-<div align="center">
-  <img src="plot/dv3.png" width="45%" alt="Porkchop Plot dv3" />
-  <img src="plot/dv4.png" width="45%" alt="Porkchop Plot dv4" />
-</div>
-
-*> Replace the above paths with the actual screenshots of your plots.*
-
-## 📂 Repository Structure
-
-```text
-.
-├── main.m                  # Main script for pruning and delta-v calculations
-├── Leg1ConditionsPar.m     # Parallel computation for Leg 1 (Earth -> Asteroid)
-├── Leg2ConditionsPar.m     # Parallel computation for Leg 2 (Asteroid -> Earth)
-├── ShoemakerHelin.m        # Initial asteroid pruning based on delta-v approximation
-├── results.mat             # Saved final calculation results
-│
-├── lambert/                # Directory for Lambert's problem solvers
-│
-├── plot/                   # Folder with final plots and plotting functions
-│
-├── class_excercises/       # Foundational exercises from class
-│
-├── ex1/                    # Solution for a previous assignment (Earth-Mars transfer)
-│
-└── README.md                 # This file
-```
